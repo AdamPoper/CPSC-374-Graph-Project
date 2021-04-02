@@ -1,0 +1,5 @@
+package sru.edu.poper;
+
+public interface BaseOpsInt {
+
+}
