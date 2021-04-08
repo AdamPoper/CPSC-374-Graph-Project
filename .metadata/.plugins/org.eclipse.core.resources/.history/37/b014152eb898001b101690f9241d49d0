@@ -84,7 +84,6 @@ public class Graph extends AbstractGraph {
 			// iterate over the map and remove any edges of the value
 			for(Map.Entry<Object, SinglyLinkedList> vertex : map.entrySet())
 				vertex.getValue().removeNode(value);
-			return true;
 		}
 		return false;
 	}
