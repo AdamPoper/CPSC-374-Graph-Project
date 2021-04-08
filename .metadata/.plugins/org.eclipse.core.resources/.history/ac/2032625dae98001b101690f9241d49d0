@@ -10,7 +10,6 @@ public class Graph <T> extends AbstractGraph <T> {
 	
 	// this source code is aided by https://www.geeksforgeeks.org/implementing-generic-graph-in-java/
 	
-	// Nodes are stored in this graph by means of mapping a value to a list of other values
 	private Map<T, SinglyLinkedList> map;   // a map of nodes to a linked list
 
 	public Graph()
@@ -30,7 +29,6 @@ public class Graph <T> extends AbstractGraph <T> {
 		return this.map.size() == 0;
 	}
 
-	// clear the graph just by clearing the map
 	@Override
 	public boolean clear() 
 	{
@@ -39,12 +37,10 @@ public class Graph <T> extends AbstractGraph <T> {
 	}
 
 	@Override
-	public boolean contains(T value) 
-	{
+	public boolean contains(T value) {
 		return (this.map.containsKey(value));
 	}
 	
-	// vertex is synonymous to node
 	private void addVertex(T value)
 	{
 		this.map.put(value, new SinglyLinkedList());
@@ -56,7 +52,7 @@ public class Graph <T> extends AbstractGraph <T> {
 			this.addVertex(dest);
 		if(!this.map.containsKey(dest))
 			this.addVertex(src);
-		// since this graph is bidirectional, both the source & destination contain each other in their respective mapped list
+		// since this graph is bidirectional, both the source & destination contain each other their respective mapped list
 		map.get(src).addNode(dest);
 		map.get(dest).addNode(src);
 	}
