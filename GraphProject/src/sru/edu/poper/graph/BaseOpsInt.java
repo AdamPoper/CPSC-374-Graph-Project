@@ -1,6 +1,6 @@
 package sru.edu.poper.graph;
 
-public interface BaseOpsInt <T> {
+public interface BaseOpsInt {
 	
 	//size of the structure
 	public int size();
@@ -15,13 +15,13 @@ public interface BaseOpsInt <T> {
 	public boolean clear();
 	
 	//checks if the value is in the structure
-	public boolean contains(T value);
+	public boolean contains(Object value);
 	
 	// add to end of structure
-	public boolean add(T value);
+	public boolean add(Object value);
 	
 	//remove at the end of structure
-	public T remove();
+	public Object remove();
 	
 	//index of the first value in the structure
 	public int indexOf(int value);

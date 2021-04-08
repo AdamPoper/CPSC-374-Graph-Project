@@ -1,6 +1,6 @@
 package sru.edu.poper.graph;
 
-public abstract class AbstractGraph <T> implements BaseOpsInt <T> {
+public abstract class AbstractGraph implements BaseOpsInt {
 
 	@Override
 	public abstract int size();
@@ -18,16 +18,14 @@ public abstract class AbstractGraph <T> implements BaseOpsInt <T> {
 	public abstract boolean clear();
 
 	@Override
-	public abstract boolean contains(T value);
+	public abstract boolean contains(Object value);
 
 	@Override
-	public boolean add(T value) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	public abstract boolean add(Object value);
+		
 
 	@Override
-	public T remove() {
+	public Object remove() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -37,5 +35,7 @@ public abstract class AbstractGraph <T> implements BaseOpsInt <T> {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	public abstract boolean removeVertex(Object value);
 
 }

@@ -1,0 +1,85 @@
+package sru.edu.poper.graph;
+
+import java.util.HashMap;
+import java.util.Map;
+import sru.edu.poper.linkedlist.SinglyLinkedList;
+
+public class Graph extends AbstractGraph {
+	
+	// This graph is bidirectional
+	
+	// this source code is aided by https://www.geeksforgeeks.org/implementing-generic-graph-in-java/
+	
+	// Nodes are stored in this graph by means of mapping a value to a list of other values
+	private Map<Object, SinglyLinkedList> map;   // a map of nodes to a linked list
+
+	public Graph()
+	{
+		this.map = new HashMap<Object, SinglyLinkedList>();
+	}
+	
+	@Override
+	public int size() 
+	{
+		return this.map.size();
+	}
+
+	@Override
+	public boolean isEmpty() 
+	{
+		return this.map.size() == 0;
+	}
+
+	// clear the graph just by clearing the map
+	@Override
+	public boolean clear() 
+	{
+		this.map.clear();
+		return true;
+	}
+
+	@Override
+	public boolean contains(Object value) 
+	{
+		return (this.map.containsKey(value));
+	}
+	
+	// vertex is synonymous to node
+	private void addVertex(Object value)
+	{
+		this.map.put(value, new SinglyLinkedList());
+	}
+	
+	public void addEdge(Object src, Object dest)
+	{
+		if(!this.map.containsKey(src))
+			this.addVertex(dest);
+		if(!this.map.containsKey(dest))
+			this.addVertex(src);
+		// since this graph is bidirectional, both the source & destination contain each other in their respective mapped list
+		map.get(src).addNode(dest);
+		map.get(dest).addNode(src);
+	}
+
+	public SinglyLinkedList getEdgesOfVertex(Object v)
+	{
+		if(this.map.containsKey(v))
+			return map.get(v);
+		return null;
+	}
+	
+	public static void main(String args[])
+	{
+		Graph graph = new Graph();
+		graph.addEdge(10, 20);
+		graph.addEdge(10, 30);
+		graph.addEdge(20, 40);
+		graph.addEdge(30, 40);
+		
+		System.out.println(graph.getEdgesOfVertex(10));
+		
+	}
+	
+	
+	
+}

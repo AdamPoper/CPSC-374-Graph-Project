@@ -1,28 +1,25 @@
 package sru.edu.poper.linkedlist;
 
 public class SinglyLinkedList {
-	
+
 	private NodeOneLink head;
 	private NodeOneLink tail;
-		
+
 	public SinglyLinkedList() {
 		this.head = new NodeOneLink("Head");
 		this.tail = new NodeOneLink("Tail");
 		this.head.setNext(tail);
 	}
-	
-	public boolean isEmpty() 
-	{
+
+	public boolean isEmpty() {
 		return (head.getNext() == tail);
 	}
-	
-	public Object addNode(Object data)
-	{
+
+	public Object addNode(Object data) {
 		NodeOneLink temp = new NodeOneLink(data);
 		temp.setNext(tail);
 		NodeOneLink n = head;
-		while(n.getNext() != tail)
-		{
+		while (n.getNext() != tail) {
 			n = n.getNext();
 		}
 		temp.setNext(tail);
@@ -30,12 +27,11 @@ public class SinglyLinkedList {
 		temp = null;
 		return data;
 	}
-	
+
 	public Object removeFirst() {
-		if(this.isEmpty()) {
+		if (this.isEmpty()) {
 			return null;
-		}
-		else {
+		} else {
 			NodeOneLink removed = head.getNext();
 			head.setNext(removed.getNext());
 			Object data = removed.getData();
@@ -43,37 +39,70 @@ public class SinglyLinkedList {
 			return data;
 		}
 	}
-	
-	public NodeOneLink getHead() 
-	{
+
+	// removes the first occurrence of an node in the list and returns its data, returns null otherwise
+	public Object removeNode(Object value) {
+		NodeOneLink current = head;
+
+		// linear search
+		while (current.getNext() != null)
+		{
+			if (current.getNext().getData() == value)
+			{
+				NodeOneLink doomed = current.getNext();
+				current.setNext(doomed.getNext());
+				doomed.setNext(null);
+				Object data = doomed.getData();
+				doomed.setData(null);
+				doomed = null;
+				System.gc();
+				return data;
+			}
+				
+			current = current.getNext();
+		}
+		return null;
+	}
+
+	public NodeOneLink getHead() {
 		return head;
 	}
-	public void setHead(NodeOneLink head) 
-	{
+
+	public void setHead(NodeOneLink head) {
 		this.head = head;
 	}
+
 	public NodeOneLink getTail() {
 		return tail;
 	}
-	public void setTail(NodeOneLink tail) 
-	{
+
+	public void setTail(NodeOneLink tail) {
 		this.tail = tail;
 	}
-	
-	public String toString()
-	{
+
+	public String toString() {
 		String tempString = "";
 		NodeOneLink ptr = head;
-		while(ptr != null)
-		{
+		while (ptr != null) {
 			tempString += ptr.getData() + " ";
 			ptr = ptr.getNext();
 		}
 		return tempString;
 	}
-	
-	public static void main(String args[])
-	{
+
+	public boolean contains(Object value) {
+		NodeOneLink current = head;
+
+		// linear search
+		while (current != null) {
+			if (current.getData() == value)
+				return true;
+			current = current.getNext();
+		}
+		return false;
+	}
+
+	public static void main(String args[]) {
 		SinglyLinkedList list = new SinglyLinkedList();
 		list.addNode("first data");
 		list.addNode("second data");
@@ -84,4 +113,3 @@ public class SinglyLinkedList {
 		System.out.println(list.toString());
 	}
 }
-

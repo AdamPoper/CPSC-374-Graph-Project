@@ -29,4 +29,6 @@ public class NodeOneLink {
 	{
 		this.next = next;
 	}
+	
+	
 }
