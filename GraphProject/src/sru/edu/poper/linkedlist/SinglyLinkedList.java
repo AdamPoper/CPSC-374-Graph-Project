@@ -4,11 +4,13 @@ public class SinglyLinkedList {
 
 	private NodeOneLink head;
 	private NodeOneLink tail;
+	private int size;
 
 	public SinglyLinkedList() {
 		this.head = new NodeOneLink("Head");
 		this.tail = new NodeOneLink("Tail");
 		this.head.setNext(tail);
+		this.size = 0;
 	}
 
 	public boolean isEmpty() {
@@ -25,6 +27,7 @@ public class SinglyLinkedList {
 		temp.setNext(tail);
 		n.setNext(temp);
 		temp = null;
+		size++;
 		return data;
 	}
 
@@ -36,6 +39,7 @@ public class SinglyLinkedList {
 			head.setNext(removed.getNext());
 			Object data = removed.getData();
 			removed = null;
+			size--;
 			return data;
 		}
 	}
@@ -55,6 +59,7 @@ public class SinglyLinkedList {
 				Object data = doomed.getData();
 				doomed.setData(null);
 				doomed = null;
+				size--;
 				System.gc();
 				return data;
 			}
@@ -62,6 +67,10 @@ public class SinglyLinkedList {
 			current = current.getNext();
 		}
 		return null;
+	}
+	
+	public int getSize() {
+		return size;
 	}
 
 	public NodeOneLink getHead() {
@@ -82,8 +91,8 @@ public class SinglyLinkedList {
 
 	public String toString() {
 		String tempString = "";
-		NodeOneLink ptr = head;
-		while (ptr != null) {
+		NodeOneLink ptr = head.getNext();
+		while (ptr != tail) {
 			tempString += ptr.getData() + " ";
 			ptr = ptr.getNext();
 		}

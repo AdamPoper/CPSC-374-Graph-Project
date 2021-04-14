@@ -1,0 +1,151 @@
+package sru.edu.poper.graph;
+
+import java.util.HashMap;
+import java.util.Map;
+import sru.edu.poper.linkedlist.SinglyLinkedList;
+
+public class Graph extends AbstractGraph {
+	
+	// This graph is bidirectional
+	
+	// The source code of this graph class is aided by https://www.geeksforgeeks.org/implementing-generic-graph-in-java/
+	
+	// Nodes/Vertices are stored in this graph by means of mapping a value to a list of other values
+	private Map<Object, SinglyLinkedList> map;   // a map of nodes to a linked list
+
+	public Graph()
+	{
+		this.map = new HashMap<Object, SinglyLinkedList>();
+	}
+	
+	// get the number of key-value mappings in the map
+	@Override
+	public int size() 
+	{
+		return this.map.size();
+	}
+
+	// check if the graph is empty
+	@Override
+	public boolean isEmpty() 
+	{
+		return this.map.isEmpty();
+	}
+
+	// clear the graph just by clearing the map
+	@Override
+	public boolean clear() 
+	{
+		this.map.clear();
+		return true;
+	}
+
+	// check to see if a vertex is in the graph
+	@Override
+	public boolean containsVertex(Object value) 
+	{
+		return (this.map.containsKey(value));
+	}
+	
+	// check if an edge exists between to values
+	@Override
+	public boolean containsEdge(Object src, Object dest)
+	{
+		if(this.map.containsKey(src))
+			if(this.map.get(src).contains(dest))
+				return true;		
+		return false;
+	}			
+	
+	// use this method to add an edge to the graph. It can also be used to add vertices to the graph
+	// to indicate the direction of the edge, direction = true for one directional and direction = false for bidirectional
+	// add system to check if an edge id single directional or bidirectional
+	
+	public void addEdge(Object src, Object dest, boolean direction)
+	{
+		if(!this.map.containsKey(src))
+			this.addVertex(src);
+		if(!this.map.containsKey(dest))
+			this.addVertex(dest);
+		
+		// set the direction of the edge
+		if(direction)
+		{
+			if(!map.get(src).contains(dest))
+				map.get(src).addNode(dest);
+		}
+		else			
+		{
+			map.get(src).addNode(dest);
+			map.get(dest).addNode(src);
+		}
+	}
+
+	// use this method to get all the edges associated with a particular vertex
+	public SinglyLinkedList getEdgesOfVertex(Object value)
+	{
+		if(this.map.containsKey(value))
+			return map.get(value);
+		return null;
+	}
+	
+	// removes a vertex from the graph. Returns true if it was removed, returns false otherwise
+	@Override
+	public boolean removeVertex(Object value)
+	{
+		if(this.map.containsKey(value))
+		{
+			// remove the value from the map
+			this.map.remove(value);
+			// iterate over the map and remove any edges of the value
+			for(Map.Entry<Object, SinglyLinkedList> vertex : map.entrySet())
+				vertex.getValue().removeNode(value);
+			return true;
+		}
+		return false;
+	}
+	
+	// removes an edge between two values
+	// same as when adding edge, use direction = true for removing a one directional edge or direction = false for a bidirectional edge
+	public boolean removeEdge(Object src, Object dest, boolean direction) 
+	{
+		if(this.map.containsKey(src) && this.map.containsKey(dest))
+		{
+			if(direction)
+				this.map.get(src).removeNode(dest);
+			else 
+			{
+				this.map.get(src).removeNode(dest);	
+				this.map.get(dest).removeNode(src);
+			}
+		}
+		return false;
+	}		
+
+	// add a vertex to the graph without specifying an edge
+	public boolean addVertex(Object value) 
+	{
+		this.map.put(value, new SinglyLinkedList());
+		return false;
+	}			
+	
+	// toString method for displaying which values are mapped to which other values
+	@Override
+	public String toString()
+	{
+		String str = new String();
+		for(Map.Entry<Object, SinglyLinkedList> vertex : map.entrySet())
+			str += vertex.getKey() + " - " + vertex.getValue() + '\n';				
+		return str;
+	}
+	
+	public static void main(String args[])
+	{
+		Graph graph = new Graph();
+		graph.addEdge(10, 20, true);
+		//graph.addEdge(20, 10, true);
+		
+		System.out.println(graph);
+	}	
+	
+}
