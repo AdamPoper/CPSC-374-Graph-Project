@@ -4,23 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import sru.edu.poper.linkedlist.SinglyLinkedList;
 
-/*
- * Name:    		Adam Poper
- * UserID:  		arp1017
- * Name of File:  	Graph.java
- * Name of Project: Bonus Project
- * Status:			Correctly-Works Completely
- * Starting Date: 	4/2/2021
- * Ending Date: 	4/14/2021
- * Description: This is a graph class for a bonus project that involves steiner trees and forests. 
- * 
- * This program was done entirely by me and no part 
- * of this program was plagiarized, intentionally or 
- * unintentionally, from anybody or any location. 
- * I would be held accountable and penalized if any 
- * part of this program was plagiarized.
- */
-
 public class Graph extends AbstractGraph {
 		
 	// This graph is unidirectional or bidirectional
