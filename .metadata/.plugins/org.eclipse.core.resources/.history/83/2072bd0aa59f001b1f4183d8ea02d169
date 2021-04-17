@@ -93,9 +93,7 @@ public class SinglyLinkedList {
 		String tempString = "";
 		NodeOneLink ptr = head.getNext();
 		while (ptr != tail) {
-			tempString += ptr.getData();
-			if(ptr.getNext() != tail)
-				tempString += ", ";
+			tempString += ptr.getData() + ", ";
 			ptr = ptr.getNext();
 		}
 		return tempString;

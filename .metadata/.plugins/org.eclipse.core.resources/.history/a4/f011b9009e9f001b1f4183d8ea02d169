@@ -34,6 +34,7 @@ public abstract class AbstractGraph implements BaseOpsInt {
 		return false;
 	}
 	
+
 	@Override
 	public Object remove() {
 		// TODO Auto-generated method stub
@@ -44,5 +45,7 @@ public abstract class AbstractGraph implements BaseOpsInt {
 	public int indexOf(int value) {
 		// TODO Auto-generated method stub
 		return 0;
-	}	
+	}
+	
+
 }
