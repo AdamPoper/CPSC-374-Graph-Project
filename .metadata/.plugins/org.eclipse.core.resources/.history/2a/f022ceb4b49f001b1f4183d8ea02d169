@@ -62,7 +62,8 @@ public class SinglyLinkedList {
 				size--;
 				System.gc();
 				return data;
-			}				
+			}
+				
 			current = current.getNext();
 		}
 		return null;
@@ -70,7 +71,23 @@ public class SinglyLinkedList {
 	
 	public int getSize() {
 		return size;
-	}	
+	}
+
+	public NodeOneLink getHead() {
+		return head;
+	}
+
+	public void setHead(NodeOneLink head) {
+		this.head = head;
+	}
+
+	public NodeOneLink getTail() {
+		return tail;
+	}
+
+	public void setTail(NodeOneLink tail) {
+		this.tail = tail;
+	}
 
 	public String toString() {
 		String tempString = "";

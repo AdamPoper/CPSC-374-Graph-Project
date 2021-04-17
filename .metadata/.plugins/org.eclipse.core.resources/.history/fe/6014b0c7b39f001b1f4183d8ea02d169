@@ -17,7 +17,7 @@ public class SinglyLinkedList {
 		return (head.getNext() == tail);
 	}
 
-	public boolean addNode(Object data) {
+	public Object addNode(Object data) {
 		NodeOneLink temp = new NodeOneLink(data);
 		temp.setNext(tail);
 		NodeOneLink n = head;
@@ -28,7 +28,7 @@ public class SinglyLinkedList {
 		n.setNext(temp);
 		temp = null;
 		size++;
-		return true;
+		return data;
 	}
 
 	public Object removeFirst() {
@@ -62,7 +62,8 @@ public class SinglyLinkedList {
 				size--;
 				System.gc();
 				return data;
-			}				
+			}
+				
 			current = current.getNext();
 		}
 		return null;
@@ -70,7 +71,23 @@ public class SinglyLinkedList {
 	
 	public int getSize() {
 		return size;
-	}	
+	}
+
+	public NodeOneLink getHead() {
+		return head;
+	}
+
+	public void setHead(NodeOneLink head) {
+		this.head = head;
+	}
+
+	public NodeOneLink getTail() {
+		return tail;
+	}
+
+	public void setTail(NodeOneLink tail) {
+		this.tail = tail;
+	}
 
 	public String toString() {
 		String tempString = "";
